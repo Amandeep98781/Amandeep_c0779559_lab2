@@ -1,0 +1,63 @@
+<html>
+<style>
+    table.topazCells {
+        border: 4px solid #555555;
+        background-color: #555555;
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+    }
+    table.topazCells td, table.topazCells th {
+        border: 1px solid #555555;
+        padding: 4px 7px;
+    }
+    table.topazCells tbody td {
+        font-size: 13px;
+        font-weight: bold;
+        color: #FFFFFF;
+    }
+    table.topazCells tr:nth-child(even) {
+        background: #A43152;
+    }
+    table.topazCells td:nth-child(even) {
+        background: #A43152;
+    }
+</style>
+<div id="user">
+    <font size="8" color="green">Final test lab</font><br><br>
+    Number of rows: <input type="text" id="t1" /><br><br>
+    Number of cols: <input type="text" id="t2" /><br><br>
+    <button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+</div>
+<button id="b2" onclick="addColumn()">Add Column</button>
+<button id="b3" onclick="addRow()">Add Row</button>
+<br><br>
+<table id="table" class="topazCells"></table>
+<script language="javascript">
+    function generateTable(){
+        let x = document.getElementById("t1").value
+        let y = document.getElementById("t2").value
+        for (let i = 0; i < x; i++) {
+            let row = document.getElementById("table").insertRow();
+            for (let j = 0; j < y; j++) {
+                let cell = row.insertCell();
+                cell.innerHTML = "Row "+i+" Col "+j;
+            }
+        }
+        document.getElementById("user").remove();
+    }
+    function addRow(){
+        let tbl = document.getElementById("table");
+        let cell = tbl.insertRow(tbl.rows.length).insertCell(0);
+        let num = tbl.rows.length -1
+        cell.innerHTML = "Row "+num+" Col 0"
+    }
+    function addColumn(){
+        let tbl = document.getElementById("table");
+        let num = tbl.rows.length -1
+        let col = tbl.rows[num].cells.length
+        let cell = tbl.rows[num].insertCell();
+        cell.innerHTML = "Row "+num+ " Col "+ col
+    }
+</script>
+</html>
